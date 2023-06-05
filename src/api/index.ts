@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { IPostWithAd, IResponsePostList } from './types';
+import { TAG } from '../components/Tag';
 
 const instance = axios.create({
   headers: {
@@ -22,7 +23,7 @@ export const createPost = (title: string, contents: string, tag: string) => {
   });
 };
 
-export const getPostById = (id: number) => {
+export const getPostById = (id: string) => {
   return instance.get(`/post/${id}`);
 };
 
