@@ -110,13 +110,13 @@ const Post = () => {
         </Toolbar>
         {post?.tag && (
           <TagWrapper>
-            <Tag> #{post.tag}</Tag>
+            <Tag>#{post?.tag}</Tag>
           </TagWrapper>
         )}
       </div>
       <ContentsArea>
-        {post?.contents.split('\n').map((line, index) => (
-          <Text key={index}>{line}</Text>
+        {post?.contents?.split('\n').map((text, index) => (
+          <Text key={index}>{text}</Text>
         ))}
       </ContentsArea>
     </div>
