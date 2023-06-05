@@ -7,7 +7,6 @@ const instance = axios.create({
   },
   baseURL: 'http://34.22.77.64:8080',
 });
-
 export const getPostList = (): Promise<AxiosResponse<IResponsePostList>> => {
   return instance.get('/posts');
 };
