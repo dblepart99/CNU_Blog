@@ -106,9 +106,9 @@ const Write = () => {
     await createPost(title, content, tag);
   };
 
-  const requestUpdatePost = async () => {
-    await updatePostById(state.postId, title, content, tag);
-  };
+  // const requestUpdatePost = async () => {
+  //   await updatePostById(state.postId, title, content, tag);
+  // };
 
   const clickConfirtm = () => {
     if (!title || !content) {

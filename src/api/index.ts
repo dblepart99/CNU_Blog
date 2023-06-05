@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { IPostWithAd, IResponsePostList, TAG } from './types';
+// import { IPostWithAd, IResponsePostList, TAG } from './types';
+import { IResponsePostList, TAG } from './types';
 // import TAG from '../components/Tag';
 
 const instance = axios.create({
