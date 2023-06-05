@@ -23,8 +23,8 @@ export const createPost = (title: string, contents: string, tag: string) => {
   });
 };
 
-export const getPostById = (id: string) => {
-  return instance.get(`/post/${id}`);
+export const getPostById = (id: string | undefined) => {
+  return instance.get(`/posts/${id}`);
 };
 
 export const updatePostById = (id: string, title: string, content: string, tag: TAG) => {
@@ -38,6 +38,6 @@ export const updatePostById = (id: string, title: string, content: string, tag: 
   );
 };
 
-export const deletePostById = (id: string) => {
+export const deletePostById = (id: string | undefined) => {
   return instance.delete(`/posts/${id}`);
 };

@@ -73,11 +73,11 @@ const Post = () => {
   useEffect(() => {
     fetchPostById();
   }, []);
+  const navigate = useNavigate();
 
   if (!post) {
     return <NotFound />;
   }
-  const navigate = useNavigate();
 
   const clickDeleteButton = () => {
     const result = window.confirm('정말로 게시글을 삭제하시겠습니까?');
