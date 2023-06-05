@@ -66,7 +66,7 @@ const Post = () => {
   const [post, setPost] = useState<IPost | null>(null);
 
   const fetchPostById = async () => {
-    const { data } = await getPostById(postId);
+    const { data } = await getPostById(Number(postId));
     const { post } = data;
     setPost(post);
   };
@@ -88,7 +88,7 @@ const Post = () => {
   };
 
   const requestDeletePostById = async () => {
-    await deletePostById(postId);
+    await deletePostById(Number(postId));
     navigate('/');
   };
 

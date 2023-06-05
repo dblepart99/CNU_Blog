@@ -4,33 +4,6 @@ import { IResponsePostList } from '../api/types';
 import { getPostList } from '../api';
 import NoPostList from '../components/NoPostList';
 
-// const list = [
-//   {
-//     post: {
-//       id: 1,
-//       title: '1번 게시글',
-//       contents: '내용',
-//       tag: TAG.REACT,
-//     },
-//   },
-//   {
-//     post: {
-//       id: 2,
-//       title: '2번 게시글',
-//       contents: '내용',
-//       tag: TAG.REACT,
-//     },
-//   },
-//   {
-//     post: {
-//       id: 3,
-//       title: '3번 게시글',
-//       contents: '내용',
-//       tag: TAG.REACT,
-//     },
-//   },
-// ];
-
 const Home = () => {
   const [postList, setPostList] = useState<IResponsePostList>([]);
 
