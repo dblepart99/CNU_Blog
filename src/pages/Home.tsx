@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { getPostList } from '../api';
 import PostListItem from '../components/PostListItem';
 import { IResponsePostList } from '../api/types';
-import { getPostList } from '../api';
 import NoPostList from '../components/NoPostList';
 
 const Home = () => {
@@ -15,9 +15,11 @@ const Home = () => {
   useEffect(() => {
     fetchPostList();
   }, []);
+
   if (postList.length === 0) {
     return <NoPostList />;
   }
+
   return (
     <div>
       {postList.map(({ post }, index) => (

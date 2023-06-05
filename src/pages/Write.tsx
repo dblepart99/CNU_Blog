@@ -1,9 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
-// import { createPost, getPostById, updatePostById } from '../api';
-import { createPost, getPostById } from '../api';
-
+import { createPost, getPostById, updatePostById } from '../api';
 import { TAG } from '../api/types';
 
 const TitleInput = styled.input`
@@ -95,9 +93,11 @@ const Write = () => {
   const handleChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
+
   const handleChangeContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.target.value);
   };
+
   const handleChangeTag = (event: ChangeEvent<HTMLSelectElement>) => {
     setTag(event.target.value as TAG);
   };
@@ -108,27 +108,27 @@ const Write = () => {
     await createPost(title, content, tag);
   };
 
-  // const requestUpdatePost = async () => {
-  //   await updatePostById(state.postId, title, content, tag);
-  // };
-
-  const clickConfirtm = () => {
+  const clickConfirm = () => {
     if (!title || !content) {
       alert('빈 값이 있습니다.');
       return;
     }
-    requestCreatePost();
+    if (isEdit) {
+      requestUpdatePost();
+    } else {
+      requestCreatePost();
+    }
     navigate('/');
   };
 
   const { state } = useLocation();
-  const isEdit = state?.isEdit;
+  const isEdit = state?.postId;
 
   const fetchPostById = async (postId: string) => {
     const { data } = await getPostById(Number(postId));
     const { post } = data;
     setTitle(post.title);
-    setContent(post.content);
+    setContent(post.contents);
     setTag(post.tag);
   };
 
@@ -138,22 +138,26 @@ const Write = () => {
     }
   }, []);
 
+  const requestUpdatePost = async () => {
+    await updatePostById(state.postId, title, content, tag);
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ height: 'calc(100% - 4rem)', paddingBottom: '4rem' }}>{/*todo (5-2) 제목 / 태그 셀렉 / 내용 입력란 추가*/}</div>
-      <TitleInput placeholder="제목을 입력하세요." value={title} onChange={handleChangeTitle} />
-      <TagSelect value={tag} onChange={handleChangeTag} placeholder={'태그를 선택하세요.'}>
-        {tagList.map(tag => {
-          return <option key={tag}>{tag}</option>;
-        })}
-      </TagSelect>
-      <Editor value={content} onChange={handleChangeContent} placeholder="내용을 입력하세요." />
-
+      <div style={{ height: 'calc(100% - 4rem)', paddingBottom: '4rem' }}>
+        <TitleInput placeholder="제목을 입력하세요" value={title} onChange={handleChangeTitle} />
+        <TagSelect placeholder={'태그를 선택하세요'} value={tag} onChange={handleChangeTag}>
+          {tagList.map(tag => {
+            return <option key={tag}>{tag}</option>;
+          })}
+        </TagSelect>
+        <Editor placeholder="내용을 입력하세요" value={content} onChange={handleChangeContent} />
+      </div>
       <BottomSheet>
         <Link to="/">
           <ExitButton>나가기</ExitButton>
         </Link>
-        <SaveButton onClick={clickConfirtm}>저장하기</SaveButton>
+        <SaveButton onClick={clickConfirm}>저장하기</SaveButton>
       </BottomSheet>
     </div>
   );

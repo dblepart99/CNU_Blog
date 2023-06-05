@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { deletePostById, getPostById } from '../api';
-// import { IAdvertisement, IPost } from '../api/types';
 import { IPost } from '../api/types';
 import NotFound from '../components/NotFound';
 import Tag from '../components/Tag';
@@ -74,11 +73,17 @@ const Post = () => {
   useEffect(() => {
     fetchPostById();
   }, []);
+
   const navigate = useNavigate();
 
   if (!post) {
     return <NotFound />;
   }
+
+  const requestDeletePostById = async () => {
+    await deletePostById(Number(postId));
+    navigate('/');
+  };
 
   const clickDeleteButton = () => {
     const result = window.confirm('정말로 게시글을 삭제하시겠습니까?');
@@ -87,12 +92,6 @@ const Post = () => {
     }
   };
 
-  const requestDeletePostById = async () => {
-    await deletePostById(Number(postId));
-    navigate('/');
-  };
-
-  // todo (4) post 컴포넌트 작성
   return (
     <div style={{ margin: '5.5rem auto', width: '700px' }}>
       <div>
