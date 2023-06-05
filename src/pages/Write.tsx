@@ -1,7 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { createPost, getPostById, updatePostById } from '../api';
+// import { createPost, getPostById, updatePostById } from '../api';
+import { createPost, getPostById } from '../api';
+
 import { TAG } from '../api/types';
 
 const TitleInput = styled.input`
