@@ -113,6 +113,7 @@ const Write = () => {
       alert('빈 값이 있습니다.');
       return;
     }
+
     if (isEdit) {
       requestUpdatePost();
     } else {

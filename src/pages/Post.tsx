@@ -67,6 +67,11 @@ const Post = () => {
   const fetchPostById = async () => {
     const { data } = await getPostById(Number(postId));
     const { post } = data;
+    console.log(post.createdAt);
+    console.log(post.id);
+    console.log(post.tag);
+    console.log(post.title);
+    console.log(post.updatedAt);
     setPost(post);
   };
 

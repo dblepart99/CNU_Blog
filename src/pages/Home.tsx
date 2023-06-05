@@ -9,6 +9,7 @@ const Home = () => {
 
   const fetchPostList = async () => {
     const { data } = await getPostList();
+    console.log(data);
     setPostList(data);
   };
 
